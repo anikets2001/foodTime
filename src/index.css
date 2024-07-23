@@ -25,7 +25,7 @@ body {
   font-size: 22px;
 }
 
-.header > .nav-items > ul >  .login-btn {
+.header > .nav-items > ul > .login-btn {
   border-radius: 4px;
   border: none;
   background-color: #386dcf !important;
@@ -66,7 +66,7 @@ body {
 }
 
 .loader-wrapper > .loader {
-  font-weight: '600';
+  font-weight: "600";
   font-size: 48px;
 }
 /*--- classes for body end---*/
@@ -129,3 +129,18 @@ body {
   border-radius: 12px;
 }
 /* ---classes for shimmer cards end --- */
+
+/* error page css */
+.error-page {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.error-page > .error-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
