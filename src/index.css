@@ -4,3 +4,128 @@ body {
   padding: 0;
   box-sizing: border-box;
 }
+
+.word-wrap {
+  word-wrap: break-word;
+}
+
+/*--- classes for header start---*/
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 40px;
+  box-shadow: 0px 4px 4px lightgrey;
+}
+
+.header > .nav-items > ul {
+  display: flex;
+  gap: 48px;
+  list-style-type: none;
+  font-size: 22px;
+}
+
+.header > .nav-items > ul >  .login-btn {
+  border-radius: 4px;
+  border: none;
+  background-color: #386dcf !important;
+  color: #f0f0f0;
+  font-size: 12px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+/*--- classes for header end---*/
+
+/*--- classes for body start---*/
+.body {
+  padding: 16px;
+}
+
+.filter {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.filter > .filter-btn {
+  cursor: pointer;
+  border: 2px solid #386dcf;
+  background-color: white !important;
+  color: #386dcf;
+  border-radius: 6px;
+  padding: 8px;
+  outline: none;
+  margin-right: 16px;
+}
+
+.loader-wrapper {
+  height: calc(100vh - 200px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader-wrapper > .loader {
+  font-weight: '600';
+  font-size: 48px;
+}
+/*--- classes for body end---*/
+
+/*--- classes for restaurant card start---*/
+.restaurant-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 16px;
+  gap: 24px;
+}
+.restaurant-card {
+  box-shadow: 0px 4px 4px lightgrey;
+  border-radius: 12px;
+  padding: 8px;
+}
+
+.restaurant-card > .res-name {
+  max-width: 230px;
+}
+
+.restaurant-card > img {
+  border-radius: 8px;
+}
+
+.restaurant-card > .card-footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.restaurant-card > .cuisines-wrapper {
+  display: flex;
+  justify-content: space-between;
+  min-height: 86px;
+}
+
+.card-footer > .locality {
+  max-width: 90px;
+  word-break: break-all;
+}
+
+.cuisines-wrapper > .cuisine {
+  word-wrap: break-word;
+  max-width: 150px;
+}
+/*--- classes for restaurant card end---*/
+
+/* ---classes for shimmer cards start --- */
+.shimmer-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 16px;
+  gap: 24px;
+}
+
+.shimmer-container > .card {
+  height: 400px;
+  width: 290px;
+  background-color: #f0f0f0;
+  border-radius: 12px;
+}
+/* ---classes for shimmer cards end --- */
