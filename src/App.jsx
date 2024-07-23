@@ -1,9 +1,48 @@
-import React from 'react'
+import React from "react";
+import { createBrowserRouter, RouterProvider, Outlet, } from "react-router-dom";
+import HomePage from "./components/HomePage";
+import About from "./components/About";
+import Contact from "./components/Contact";
+import Header from "./components/Header";
+import ErrorPage from "./components/ErrorPage";
+
+const AppLayout = () => {
+  return (
+    <div className="app">
+      <Header />
+      <Outlet />
+    </div>
+  );
+};
+
+const appRouter = createBrowserRouter([
+  {
+    path: "/",
+    element: <AppLayout />,
+    children: [
+      {
+        path: "/",
+        element: <HomePage />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
+      },
+      {
+        path: "/about",
+        element: <About />,
+      },
+    ],
+    errorElement: <ErrorPage />,
+  },
+]);
 
 const App = () => {
   return (
-    <div>App...</div>
-  )
-}
+    <>
+      <RouterProvider router={appRouter} />
+    </>
+  );
+};
 
-export default App
+export default App;
