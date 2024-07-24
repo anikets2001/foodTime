@@ -1,23 +1,25 @@
 import React from "react";
-import { LOGO_URL } from "../utils/constants";
+import { CARD_IMAGE_BASE_URL } from "../utils/constants";
 
-const RestaurantCard = () => {
+const RestaurantCard = ({
+  restaurantName,
+  cuisine,
+  star,
+  priceForTwo,
+  locality,
+  imageId,
+}) => {
   return (
     <div className="restaurant-card">
-      <img
-        height={200}
-        width={230}
-        src={LOGO_URL}
-        alt="food"
-      />
-      <h3 className="res-name">name</h3>
+      <img height={200} width={230} src={CARD_IMAGE_BASE_URL + imageId} alt="food" />
+      <h3 className="res-name">{restaurantName}</h3>
       <div className="cuisines-wrapper">
-        <p className="cuisine">burgers, vegetarian</p>
-        <p>3.6🌟</p>
+        <p className="cuisine">{cuisine.join(', ')}</p>
+        <p>{star}🌟</p>
       </div>
       <div className="card-footer">
-        <p className="locality">sector 38</p>
-        <p>500 for two</p>
+        <p className="locality">{locality}</p>
+        <p>{priceForTwo}</p>
       </div>
     </div>
   );
