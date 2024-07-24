@@ -5,12 +5,6 @@ import { NavLink } from "react-router-dom";
 const Header = () => {
   const [btnNameReact, setBtnNameReact] = useState("Login");
 
-  console.log("header rendered");
-
-  useEffect(() => {
-    console.log("useEffect get Called!");
-  }, [btnNameReact]);
-
   return (
     <div className="header">
       <div className="logo-container">
