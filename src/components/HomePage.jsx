@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
-import Shimmer from './Shimmer'
+import Shimmer from "./Shimmer";
 import { CARD_LIST_BASE_URL } from "../utils/constants";
 
 const HomePage = () => {
   const [restaurantsList, setRestaurantsList] = useState([]);
+  const [filteredRestaurant, setFilteredRestaurant] = useState([]);
+  const [searchKey, setSearchKey] = useState("");
 
   useEffect(() => {
     fetchRestaurants();
@@ -19,23 +21,49 @@ const HomePage = () => {
           ?.restaurants;
 
       setRestaurantsList(data);
+      setFilteredRestaurant(data)
     } catch (error) {
       console.error(error);
+    }
+  };
+
+  const handleTopRes = () => {
+    const topRes = restaurantsList.filter((item) => item?.info?.avgRating > 4.3);
+    setFilteredRestaurant(topRes);
+  };
+
+  const handleSearch = (e) => {
+    const value = e.target.value;
+    setSearchKey(value);
+
+    if (value === " ") {
+      setRestaurantsList(restaurantsList);
+    } else {
+      const filteredData = restaurantsList.filter((item) =>
+        item?.info?.name.toLowerCase().includes(value.toLowerCase())
+      );
+      setFilteredRestaurant(filteredData);
     }
   };
 
   return (
     <div className="body">
       <div className="filter">
-        <button className="filter-btn">Top Rated Restaurants</button>
+        <button className="filter-btn" onClick={handleTopRes}>
+          Top Rated Restaurants
+        </button>
         <div className="search">
-          <input type="text" className="search-box" value={""} />
-          <button className="search-btn">Search</button>
+          <input
+            type="text"
+            className="search-box"
+            value={searchKey}
+            onChange={handleSearch}
+          />
         </div>
       </div>
       {restaurantsList.length > 0 ? (
         <div className="restaurant-container">
-          {restaurantsList.map((card) => (
+          {filteredRestaurant.map((card) => (
             <RestaurantCard
               key={card?.info?.id}
               restaurantName={card?.info?.name}
