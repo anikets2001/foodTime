@@ -21,14 +21,16 @@ const HomePage = () => {
           ?.restaurants;
 
       setRestaurantsList(data);
-      setFilteredRestaurant(data)
+      setFilteredRestaurant(data);
     } catch (error) {
       console.error(error);
     }
   };
 
   const handleTopRes = () => {
-    const topRes = restaurantsList.filter((item) => item?.info?.avgRating > 4.3);
+    const topRes = restaurantsList.filter(
+      (item) => item?.info?.avgRating > 4.3
+    );
     setFilteredRestaurant(topRes);
   };
 
@@ -36,14 +38,11 @@ const HomePage = () => {
     const value = e.target.value;
     setSearchKey(value);
 
-    if (value === " ") {
-      setRestaurantsList(restaurantsList);
-    } else {
-      const filteredData = restaurantsList.filter((item) =>
-        item?.info?.name.toLowerCase().includes(value.toLowerCase())
-      );
-      setFilteredRestaurant(filteredData);
-    }
+    const filteredData = restaurantsList.filter((item) =>
+      item?.info?.name.toLowerCase().includes(value.toLowerCase())
+    );
+
+    setFilteredRestaurant(filteredData);
   };
 
   return (
@@ -61,7 +60,7 @@ const HomePage = () => {
           />
         </div>
       </div>
-      {restaurantsList.length > 0 ? (
+      {restaurantsList?.length > 0 ? (
         <div className="restaurant-container">
           {filteredRestaurant.map((card) => (
             <RestaurantCard
