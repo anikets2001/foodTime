@@ -144,3 +144,23 @@ body {
   justify-content: center;
   flex-direction: column;
 }
+
+/* classes for restaurant menu */
+
+.res-menu-container {
+  padding: 16px;
+}
+.res-info-container {
+  margin: auto;
+  border: 1px solid #f0f0f0;
+  border-radius: 12px;
+  width: 50%;
+  padding: 0px 8px;
+}
+
+.res-info-container > .name-wrapper,
+.price-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

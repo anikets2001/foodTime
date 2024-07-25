@@ -28,7 +28,7 @@ const Header = () => {
             <NavLink to={"/contact"}>Contact Us</NavLink>
           </li>
           <li>
-            <NavLink to={"/restaurants"}>Cart</NavLink>
+            <NavLink to={"/"}>Cart</NavLink>
           </li>
           <button
             className="login-btn"

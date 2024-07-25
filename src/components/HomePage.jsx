@@ -14,14 +14,14 @@ const HomePage = () => {
 
   const fetchRestaurants = async () => {
     try {
-      const baseUrl = await fetch(CARD_LIST_BASE_URL);
-      const json = await baseUrl.json();
-      const data =
+      const data = await fetch(CARD_LIST_BASE_URL);
+      const json = await data.json();
+      const restaurants =
         json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
           ?.restaurants;
 
-      setRestaurantsList(data);
-      setFilteredRestaurant(data);
+      setRestaurantsList(restaurants);
+      setFilteredRestaurant(restaurants);
     } catch (error) {
       console.error(error);
     }
@@ -29,7 +29,7 @@ const HomePage = () => {
 
   const handleTopRes = () => {
     const topRes = restaurantsList.filter(
-      (item) => item?.info?.avgRating > 4.3
+      (item) => item?.info?.avgRating > 4
     );
     setFilteredRestaurant(topRes);
   };
