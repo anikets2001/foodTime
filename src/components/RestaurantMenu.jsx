@@ -4,7 +4,11 @@ import Shimmer from "./Shimmer";
 
 const RestaurantMenu = () => {
   const [resInfo, setResInfo] = useState(null);
-  console.log("resInfo:",resInfo)
+  console.log(
+    resInfo?.cards[4].groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card
+      ?.itemCards
+  );
+
   // fetch restaurant menu from the api
   useEffect(() => {
     fetchMenu();
@@ -15,12 +19,17 @@ const RestaurantMenu = () => {
     try {
       const data = await fetch(RES_MENU_BASE_URL);
       const json = await data.json();
-      const info = json?.data?.cards[2]?.card?.card?.info;
-      setResInfo(info);
+      const menu = json?.data;
+      setResInfo(menu);
     } catch (error) {
       console.error(error);
     }
   };
+
+  const itemCards =
+    resInfo?.cards[4].groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card
+      ?.itemCards;
+  console.log(itemCards);
 
   return resInfo === null ? (
     <Shimmer />
@@ -28,12 +37,24 @@ const RestaurantMenu = () => {
     <div className="res-menu-container">
       <div className="res-info-container">
         <div className="name-wrapper">
-          <p>{resInfo?.name}</p>
-          <p>{resInfo.cuisines.join(', ')}</p>
+          <p>{resInfo.cards[2]?.card?.card?.info?.name}</p>
+          <p>{resInfo.cards[2]?.card?.card?.info?.cuisines.join(", ")}</p>
         </div>
         <div className="price-container">
-          <p>{resInfo?.costForTwoMessage}</p>
-          <p>{resInfo?.locality}</p>
+          <p>{resInfo.cards[2]?.card?.card?.info?.costForTwoMessage}</p>
+          <p>{resInfo.cards[2]?.card?.card?.info?.locality}</p>
+        </div>
+      </div>
+      <div className="menu-container">
+        <div className="items-wrapper">
+          {itemCards.map((item, index) => (
+            <div className="menu-item" key={item?.card?.info?.id}>
+              <p>
+                {index+1}: {item?.card?.info?.name}
+              </p>
+              <p>Rs. {item?.card?.info?.price / 100}</p>
+            </div>
+          ))}
         </div>
       </div>
     </div>

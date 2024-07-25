@@ -158,6 +158,30 @@ body {
   padding: 0px 8px;
 }
 
+.menu-container {
+  margin: auto;
+  border-right: 1px solid #f0f0f0;
+  border-left: 1px solid #f0f0f0;
+  width: 50%;
+  padding: 0px 8px;
+  margin-top: 24px;
+}
+
+.items-wrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.items-wrapper > .menu-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 50%;
+  border-top: 1px solid #f0f0f0;
+}
+
 .res-info-container > .name-wrapper,
 .price-container {
   display: flex;
