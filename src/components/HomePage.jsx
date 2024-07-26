@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { CARD_LIST_BASE_URL } from "../utils/constants";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
   const [restaurantsList, setRestaurantsList] = useState([]);
@@ -28,9 +29,7 @@ const HomePage = () => {
   };
 
   const handleTopRes = () => {
-    const topRes = restaurantsList.filter(
-      (item) => item?.info?.avgRating > 4
-    );
+    const topRes = restaurantsList.filter((item) => item?.info?.avgRating > 4);
     setFilteredRestaurant(topRes);
   };
 
@@ -63,15 +62,16 @@ const HomePage = () => {
       {restaurantsList?.length > 0 ? (
         <div className="restaurant-container">
           {filteredRestaurant.map((card) => (
-            <RestaurantCard
-              key={card?.info?.id}
-              restaurantName={card?.info?.name}
-              cuisine={card?.info?.cuisines}
-              star={card?.info?.avgRating}
-              priceForTwo={card?.info?.costForTwo}
-              locality={card?.info?.locality}
-              imageId={card?.info?.cloudinaryImageId}
-            />
+            <Link key={card?.info?.id} to={"/restaurants/"+ card?.info?.id}>
+              <RestaurantCard
+                restaurantName={card?.info?.name}
+                cuisine={card?.info?.cuisines}
+                star={card?.info?.avgRating}
+                priceForTwo={card?.info?.costForTwo}
+                locality={card?.info?.locality}
+                imageId={card?.info?.cloudinaryImageId}
+              />
+            </Link>
           ))}
         </div>
       ) : (
