@@ -3,8 +3,10 @@ import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { CARD_LIST_BASE_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const HomePage = () => {
+  const onlineStatus = useOnlineStatus();
   const [restaurantsList, setRestaurantsList] = useState([]);
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
   const [searchKey, setSearchKey] = useState("");
@@ -44,7 +46,7 @@ const HomePage = () => {
     setFilteredRestaurant(filteredData);
   };
 
-  return (
+  return onlineStatus ? (
     <div className="body">
       <div className="filter">
         <button className="filter-btn" onClick={handleTopRes}>
@@ -62,7 +64,7 @@ const HomePage = () => {
       {restaurantsList?.length > 0 ? (
         <div className="restaurant-container">
           {filteredRestaurant.map((card) => (
-            <Link key={card?.info?.id} to={"/restaurants/"+ card?.info?.id}>
+            <Link key={card?.info?.id} to={"/restaurants/" + card?.info?.id}>
               <RestaurantCard
                 restaurantName={card?.info?.name}
                 cuisine={card?.info?.cuisines}
@@ -78,6 +80,8 @@ const HomePage = () => {
         <Shimmer />
       )}
     </div>
+  ) : (
+    <h1>Looks like you are offline, please check your internet connection</h1>
   );
 };
 

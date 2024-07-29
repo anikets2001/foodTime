@@ -2,7 +2,7 @@ import React from "react";
 
 class UserClass extends React.Component {
   constructor(props) {
-    console.log('user constructor called')
+    // console.log('user constructor called')
     super(props);
 
     this.state = {
@@ -14,7 +14,7 @@ class UserClass extends React.Component {
   }
 
   async componentDidMount() {
-    console.log('componentDidMount called')
+    // console.log('componentDidMount called')
     const response = await fetch("https://api.github.com/users/anikets2001");
     const json = await response.json();
     this.setState({
@@ -24,11 +24,11 @@ class UserClass extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log("component did update");
+    // console.log("component did update");
   }
 
   componentWillUnmount() {
-    console.log("component will unmount");
+    // console.log("component will unmount");
   }
 
   render() {
