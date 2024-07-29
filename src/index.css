@@ -188,3 +188,23 @@ body {
   align-items: center;
   justify-content: space-between;
 }
+
+/* classes for user card start */
+.users-wrapper {
+  padding: 16px;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid black;
+
+}
+.users-wrapper > .user-card {
+  margin-top: 16px;
+  border: 1px sold #f0f0f0;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 16px;
+  border-radius: 12px;
+  width: 33%;
+}
+
+/* classes for user card end */
