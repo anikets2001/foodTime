@@ -5,14 +5,13 @@ class About extends React.Component {
   constructor(props) {
     super(props);
 
-    console.log("about constructor called");
   }
 
   componentDidMount() {
-    console.log("about componentDidMount called");
+    // console.log("about componentDidMount called");
   }
   render() {
-    console.log("about render called");
+    // console.log("about render called");
     return (
       <>
         <h2>This is the food time.</h2>
