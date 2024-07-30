@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { LOGO_URL } from "../utils/constants";
 import { NavLink } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
@@ -29,6 +29,9 @@ const Header = () => {
           </li>
           <li>
             <NavLink to={"/contact"}>Contact Us</NavLink>
+          </li>
+          <li>
+            <NavLink to={"/grocery"}>Grocery</NavLink>
           </li>
           <li>
             <NavLink to={"/"}>Cart</NavLink>

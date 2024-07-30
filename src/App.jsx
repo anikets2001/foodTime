@@ -1,11 +1,13 @@
-import React from "react";
-import { createBrowserRouter, RouterProvider, Outlet, } from "react-router-dom";
+import React, { Suspense, lazy } from "react";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import HomePage from "./components/HomePage";
-import About from "./components/About";
-import Contact from "./components/Contact";
 import Header from "./components/Header";
-import ErrorPage from "./components/ErrorPage";
-import RestaurantMenu from './components/RestaurantMenu';
+import Shimmer from "./components/Shimmer";
+const About = lazy(() => import("./components/About"));
+const Contact = lazy(() => import("./components/Contact"));
+const RestaurantMenu = lazy(() => import("./components/RestaurantMenu"));
+const ErrorPage = lazy(() => import("./components/ErrorPage"));
+const Grocery = lazy(() => import("./components/Grocery")); //lazy loading/dynamic import / on demand loading/ to reduce the bundle size
 
 const AppLayout = () => {
   return (
@@ -27,18 +29,42 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/contact",
-        element: <Contact />,
+        element: (
+          <Suspense fallback={<Shimmer />}>
+            <Contact />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/grocery",
+        element: (
+          <Suspense fallback={<Shimmer />}>
+            <Grocery />
+          </Suspense>
+        ),
       },
       {
         path: "/about",
-        element: <About />,
+        element: (
+          <Suspense fallback={<Shimmer />}>
+            <About />
+          </Suspense>
+        ),
       },
       {
         path: "/restaurants/:resId",
-        element: <RestaurantMenu />,
+        element: (
+          <Suspense fallback={<Shimmer />}>
+            <RestaurantMenu />
+          </Suspense>
+        ),
       },
     ],
-    errorElement: <ErrorPage />,
+    errorElement: (
+      <Suspense fallback={<Shimmer />}>
+        <ErrorPage />
+      </Suspense>
+    ),
   },
 ]);
 
