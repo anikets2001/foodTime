@@ -47,22 +47,15 @@ const HomePage = () => {
   };
 
   return onlineStatus ? (
-    <div className="body">
-      <div className="filter">
-        <button className="filter-btn" onClick={handleTopRes}>
-          Top Rated Restaurants
-        </button>
-        <div className="search">
-          <input
-            type="text"
-            className="search-box"
-            value={searchKey}
-            onChange={handleSearch}
-          />
+    <div className="p-4 bg-white dark:bg-gray-800">
+      <div className="flex items-center space-x-4 py-2">
+        <button onClick={handleTopRes} className="bg-blue-400 py-2 px-4 text-white border rounded-md">Top Rated Restaurants</button>
+        <div>
+          <input type="text" value={searchKey} onChange={handleSearch} className="border-solid border-black p-2 border rounded-md" placeholder="search..."/>
         </div>
       </div>
       {restaurantsList?.length > 0 ? (
-        <div className="restaurant-container">
+        <div className="flex flex-wrap gap-4">
           {filteredRestaurant.map((card) => (
             <Link key={card?.info?.id} to={"/restaurants/" + card?.info?.id}>
               <RestaurantCard
