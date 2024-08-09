@@ -11,7 +11,6 @@ class About extends React.Component {
     // console.log("about componentDidMount called");
   }
   render() {
-    // console.log("about render called");
     return (
       <>
         <h2>This is the food time.</h2>
