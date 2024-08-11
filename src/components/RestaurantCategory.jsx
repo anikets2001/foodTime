@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { MdOutlineExpandMore } from "react-icons/md";
 import ItemList from "./ItemList";
 

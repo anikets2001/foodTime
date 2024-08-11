@@ -1,8 +1,9 @@
-import React, { Suspense, lazy } from "react";
+import React, { Suspense, lazy, useEffect, useReducer, useState } from "react";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import HomePage from "./components/HomePage";
 import Header from "./components/Header";
 import Shimmer from "./components/Shimmer";
+import UserContext from "./utils/UserContext";
 const About = lazy(() => import("./components/About"));
 const Contact = lazy(() => import("./components/Contact"));
 const RestaurantMenu = lazy(() => import("./components/RestaurantMenu"));
@@ -10,11 +11,21 @@ const ErrorPage = lazy(() => import("./components/ErrorPage"));
 const Grocery = lazy(() => import("./components/Grocery")); //lazy loading/dynamic import / on demand loading/ to reduce the bundle size
 
 const AppLayout = () => {
+  const [userName, setUserName] = useState();
+
+  useEffect(() => {
+    const data = {
+      name: "Aniket Singh",
+    };
+    setUserName(data?.name);
+  }, []);
   return (
-    <div className="app">
-      <Header />
-      <Outlet />
-    </div>
+    <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
+      <div className="app">
+        <Header />
+        <Outlet />
+      </div>
+    </UserContext.Provider>
   );
 };
 

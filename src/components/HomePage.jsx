@@ -4,12 +4,15 @@ import Shimmer from "./Shimmer";
 import { CARD_LIST_BASE_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import { useContext } from "react";
+import UserContext from "../utils/UserContext";
 
 const HomePage = () => {
   const onlineStatus = useOnlineStatus();
   const [restaurantsList, setRestaurantsList] = useState([]);
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
   const [searchKey, setSearchKey] = useState("");
+  const { loggedInUser, setUserName } = useContext(UserContext);
 
   const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
 
@@ -66,6 +69,17 @@ const HomePage = () => {
             placeholder="search..."
           />
         </div>
+      </div>
+      <div>
+        <label>User Name:</label>
+        <input
+          type="text"
+          aria-label="user-name"
+          value={loggedInUser}
+          placeholder="your name please..."
+          className="border border-black ml-2 rounded-md px-2 py-1"
+          onChange={(e) => setUserName(e.target.value)}
+        />
       </div>
       {restaurantsList?.length > 0 ? (
         <div className="flex flex-wrap gap-4">
