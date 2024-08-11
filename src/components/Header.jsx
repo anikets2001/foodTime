@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { LOGO_URL } from "../utils/constants";
 import { NavLink } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import ThemeToggle from "./ThemeToggle";
+import UserContext from "../utils/UserContext";
 
 const Header = () => {
   const onlineStatus = useOnlineStatus();
   const [btnNameReact, setBtnNameReact] = useState("Login");
+  const data = useContext(UserContext);
 
   return (
-    <div className="flex justify-between items-center shadow-md border border-1">
+    <div className="flex justify-between items-center shadow-md border border-1 pr-2">
       <div>
         <img height={"80px"} width={"90px"} src={LOGO_URL} alt="logo" />
       </div>
@@ -41,6 +43,9 @@ const Header = () => {
             {btnNameReact}
           </button>
           <ThemeToggle />
+          <li>
+            <p className="font-semibold">{data.loggedInUser}</p>
+          </li>
         </ul>
       </div>
     </div>
