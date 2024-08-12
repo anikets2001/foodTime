@@ -112,7 +112,7 @@ const HomePage = () => {
       )}
     </div>
   ) : (
-    <h1>Looks like you are offline, please check your internet connection</h1>
+    <h1>Looks like you are offline, please check your internet connection.</h1>
   );
 };
 
