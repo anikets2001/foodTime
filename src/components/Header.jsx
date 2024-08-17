@@ -4,11 +4,17 @@ import { NavLink } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import ThemeToggle from "./ThemeToggle";
 import UserContext from "../utils/UserContext";
+import { FaShoppingCart } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const onlineStatus = useOnlineStatus();
   const [btnNameReact, setBtnNameReact] = useState("Login");
   const data = useContext(UserContext);
+
+  // subscribing to the store using selector (to read data from store)
+  const cartItems = useSelector((store) => store.cart.items);
+  // console.log(cartItems);
 
   return (
     <div className="flex justify-between items-center shadow-md border border-1 pr-2">
@@ -31,7 +37,14 @@ const Header = () => {
             <NavLink to={"/grocery"}>Grocery</NavLink>
           </li>
           <li>
-            <NavLink to={"/"}>Cart</NavLink>
+            <NavLink to={"/cart"}>
+              <div className="flex">
+                <FaShoppingCart className="mt-1" />
+                <p className="relative bottom-2 text-xs">
+                  ({cartItems.length})
+                </p>
+              </div>
+            </NavLink>
           </li>
           <button
             onClick={() => {
